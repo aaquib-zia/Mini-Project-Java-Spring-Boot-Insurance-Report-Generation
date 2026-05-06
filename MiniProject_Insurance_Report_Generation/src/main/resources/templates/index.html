@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+	</head>
+  <body>
+	
+	<nav class="navbar mb-4 bg-dark border-bottom border-body" data-bs-theme="dark">
+		  <div class="container">
+		    
+			<h1 class="pb-2 pt-2 text-white">Reports Application</h1>
+		    
+		  </div>
+		</nav>
+	
+		<div class="container">
+		<form th:action="@{/search}" th:object="${searchi}" method="post">
+			<table>
+				<div>
+					<h6>Filters:</h6>
+					<tr>
+						<td  class="pe-2">Plan Name: </td>
+						<td class="pe-3">
+							
+							<!-- Populating dropdown values from controller to UI from the repository -->
+							<select class="btn btn-sm border"  th:field="*{planName}">
+								  <option th:value="null" th:text="-select-"></option>
+								  <option th:each="nm : ${name}" 
+								  		  th:value="${nm}"
+								  		  th:text="${nm}"></option>
+						    </select>
+						</td>
+						<td  class="pe-2">Plan Status: </td>
+						<td class="pe-3 ">
+							
+							<select class="btn btn-sm btn-sm border"  th:field="*{planStatus}">
+								  	<option th:value="null" th:text="-select-"></option>
+									<option th:each="st:${statuses}"
+											th:value="${st}"
+											th:text="${st}"></option>
+							 </select>
+						</td>
+						
+						
+						<td  class="pe-2">Gender: </td>
+						<td class=" pe-3">
+							<select class="btn btn-sm border " th:field="*{gender}">
+								<option th:value="null" th:text="-select-"></option>
+							    <option th:value="Male" th:text="Male"></option>
+						        <option th:value="Female" th:text="Female"></option>
+							 </select>
+						</td>
+					</tr>
+					<tr >
+						<td class="pe-2 pt-4">Start Date: </td>
+						<td class="pe-3 pt-4">
+							<input class="btn btn-sm border" type="date" th:field="*{startDate}">
+							
+						</td>						
+						<td class="pe-2 pt-4">End Date: </td>
+						<td class="pe-3 pt-4">
+							<input class="btn btn-sm border" type="date" th:field="*{endDate}">
+						</td>
+					</tr>
+					<tr>
+						<td class="pe-2 pt-4 d-flex flex-row-reverse" >
+							<a class="btn btn-secondary" th:href="@{/}">Reset</a>
+						</td>
+						<td class="pe-2 pt-4" align="right">
+							<input type="submit" value="Search" class="btn btn-primary ">
+						</td>
+					</tr>
+					
+				</div>
+				
+			</table>
+			
+			
+		</form>
+		</div>
+		
+		<hr/>
+		
+		<div class="container">
+		<table class="table table-bordered ">
+			<thead class="table-light">
+				<tr>					
+					<th>Id</th>
+					<th>Holder Name</th>
+					<th>Gender </th>
+					<th>Plan Name</th>
+					<th>Plan Status</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Benefit Amount </th>
+				</tr>
+			</thead>
+			<tbody class="table-success table-hover">
+				<tr th:each="p:${plans}">
+					<td th:text="${p.citizenId}"> </td>
+					<td th:text="${p.citizenName}"> </td>
+					<td th:text="${p.gender}"> </td>
+					<td th:text="${p.planName}"> </td>
+					<td th:text="${p.planStatus}"> </td>
+					<td th:text="${p.planStartDate}"> </td>
+					<td th:text="${p.planEndDate}"></td>
+					<td th:text="${p.benefitAmt}"></td>
+				</tr>
+			</tbody>
+			</table>
+		
+		<tr>
+			<p colspan="8" style="text-align: center;" th:if="${#lists.isEmpty(plans)}">No records available</p>
+		</tr>
+	</div>
+	
+	<hr/>
+	
+	<div class="container" style="text-align: center;">
+		<tr>
+			<p>Export:
+			<a  th:href="excel" th:text="Excel"></a>
+			<a  href="pdf" th:text="Pdf"></a>
+			</p>
+		</tr>
+	</div>
+	
+	
+	
+	
+	
+	
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>
