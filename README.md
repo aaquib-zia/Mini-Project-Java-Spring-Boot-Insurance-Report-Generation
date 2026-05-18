@@ -54,6 +54,17 @@ The application provides users to browse dynamic filtering options and supports 
 
 ---
 
+### Reports Dashboard
+
+
+## Screenshots
+
+![Search Page](MiniProject_Insurance_Report_Generation/Image/Screenshot%202026-05-19%20005712.png)
+![Search Result](MiniProject_Insurance_Report_Generation/Image/Screenshot%2026-05-19%005751.png)
+![Approved Plans](MiniProject_Insurance_Report_Generation/Image/Screenshot%2026-05-19%005813.png)
+
+---
+
 ## Project Structure
 
 ```text
@@ -67,17 +78,6 @@ src/
  └── util/
 ```
 
----
-
-## Screenshots
-
-### Reports Dashboard
-
-Add your screenshot here:
-
-```markdown
-
-```
 
 ---
 
